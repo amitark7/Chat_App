@@ -2,7 +2,7 @@ body{
     margin: 0;
 }
 
-@media(max-aspect-ratio: 7/10){
+@media(max-width:500px){
 
     .joinPage{
         display: flex;
