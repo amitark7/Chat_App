@@ -9,7 +9,7 @@ import ReactScrollBottom from 'react-scroll-to-bottom'
 
 
 let socket;
-const ENDPOINT = "http://localhost:5000";
+const ENDPOINT = "https://chat-app-9anf.onrender.com";
 
 const Chat = () => {
   const[id,setId]=useState("");
