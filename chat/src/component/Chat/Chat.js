@@ -29,15 +29,17 @@ const Chat = () => {
 
     socket.emit('joined',{user});
 
+    socket.on('userjoined',(data)=>{
+      setMessages([...messages,data]);
+      console.log('User has Joined')
+      console.log(data.user, data.message)
+    })
+    
     socket.on('welcome',(data)=>{
       setMessages([...messages,data]);
       console.log(data.user, data.message);
     })
 
-    socket.on('broadcast',(data)=>{
-      setMessages([...messages,data]);
-      console.log(data.user, data.message)
-    })
 
     socket.on('leave',(data)=>{
       setMessages([...messages,data]);
@@ -49,7 +51,7 @@ const Chat = () => {
     }
     // eslint-disable-next-line
   }, []);
-
+  
   console.log(messages)
   useEffect(()=>{
     socket.on('sendMessage',(data)=>{
@@ -70,7 +72,7 @@ const Chat = () => {
         </div>
         <ReactScrollBottom className="chatBox">
           {messages.map((item,i)=>{
-            return <Message message={item.message} user={item.id===id?'':item.user} classs={item.id===id?'right':'left'}/>
+            return <Message key={i} message={item.message} user={item.id===id?'':item.user} classs={item.id===id?'right':'left'}/>
           })}
         </ReactScrollBottom>
         <div className="inputBox">
