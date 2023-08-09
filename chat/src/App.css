@@ -58,6 +58,9 @@ body{
     .header img:hover{
         transform: scale(3.2);
     }
+    .sendBtn>img{
+        width: 6vmax;
+    }
     .chatBox{
         height: 80% !important;
     }
