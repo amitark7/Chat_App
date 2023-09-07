@@ -29,31 +29,29 @@ const Chat = () => {
 
     socket.emit('joined',{user});
 
-    socket.on('userjoined',(data)=>{
-      setMessages([...messages,data]);
-      console.log('User has Joined')
-      console.log(data.user, data.message)
-    })
-    
     socket.on('welcome',(data)=>{
       setMessages([...messages,data]);
       console.log(data.user, data.message);
-    })
-
-
-    socket.on('leave',(data)=>{
-      setMessages([...messages,data]);
-      console.log(data.user, data.message)
     })
     return () => {
       socket.disconnect();
       socket.off();
     }
-    // eslint-disable-next-line
-  }, []);
+  }, [socketIO]);
   
   console.log(messages)
   useEffect(()=>{
+    socket.on('userjoined',(data)=>{
+      setMessages([...messages,data]);
+      console.log('User has Joined')
+      console.log(data.user, data.message)
+    })
+
+    socket.on('left',(data)=>{
+      setMessages([...messages,data]);
+      console.log(data.user, data.message)
+    })
+
     socket.on('sendMessage',(data)=>{
       setMessages([...messages,data]);
       console.log(data.user,data.message,data.id)
