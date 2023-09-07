@@ -37,7 +37,8 @@ const Chat = () => {
       socket.disconnect();
       socket.off();
     }
-  }, [socketIO]);
+    // eslint-disable-next-line
+  }, []);
   
   console.log(messages)
   useEffect(()=>{
